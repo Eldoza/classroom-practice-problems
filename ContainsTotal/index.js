@@ -10,8 +10,39 @@
 // containsTotal([1,2,1], 2) => true (1 + 1 = 2)
 
 const containsTotal = (numArr, target) => {
-  return null
+  for (let i = 0; i < numArr.length; i++){
+    for (let j = 1; j < numArr.length; j++){
+      // console.log('DEM NUMBERS =>', numArr[i], numArr[j])
+      if (i !== j){
+        if (numArr[i] + numArr[j] === target){
+          return true
+        }
+      }
+    }
+  }
+
+  return false
 };
+
+const containsTotal = (numArr, target) => {
+  let map = {}
+  
+  for (let i = 0; i < numArr.length; i++){
+    let currentDifference = target - numArr[i]
+    console.log('difference=>', currentDifference)
+
+    if (typeof map[currentDifference] !== "undefined" &&  map[currentDifference] !== i){
+      return true
+    }
+
+    map[numArr[i]] = i
+
+  }
+
+  return false
+}
+
+containsTotal([1,2,3], 5)
 
 
 module.exports = containsTotal;
